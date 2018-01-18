@@ -1,13 +1,20 @@
 <?php
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Http\Controllers\Api\ApiController;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class LoginController extends Controller
+/**
+ * Class LoginController
+ * 
+ * @package App\Http\Controllers\Api\Auth
+ * @author Nick B. Alcala<nick@niceprogrammer.com> 01-19-2018
+ * @copyright 2018 Nice Programmer<http://niceprogrammer.com>
+ */
+class LoginController extends ApiController
 {
     public function login(Request $request)
     {
@@ -17,11 +24,11 @@ class LoginController extends Controller
         try {
             // attempt to verify the credentials and create a token for the user
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return $this->unauthorized('Invalid Credentials');
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return $this->error('Could Not Create Token');
         }
 
         /* @var User $user */

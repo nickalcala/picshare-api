@@ -16,6 +16,7 @@ Route::group([
     'namespace' => 'Api'
 ], function () {
     Route::post('login', 'Auth\LoginController@login');
+    Route::post('register', 'Auth\RegisterController@store');
 });
 
 // Protected
@@ -23,5 +24,13 @@ Route::group([
     'middleware' => 'jwt.auth',
     'namespace' => 'Api'
 ], function () {
+
+    Route::group([
+        'prefix' => 'pictures',
+        'namespace' => 'Pictures'
+    ], function () {
+        Route::get('/', 'PicturesController@index');
+        Route::post('/', 'PicturesController@store');
+    });
     
 });

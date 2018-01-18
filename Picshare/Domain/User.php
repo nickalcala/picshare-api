@@ -1,6 +1,5 @@
 <?php
-
-namespace App;
+namespace Picshare\Domain;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
