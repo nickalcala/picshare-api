@@ -24,7 +24,7 @@ class ApiController extends Controller
         return \Response::json([
             'message' => $message,
             'http_code' => static::$HTTP_UNAUTHORIZED
-        ]);
+        ], static::$HTTP_UNAUTHORIZED);
     }
 
     public function unprocessable($messages = [])
@@ -32,7 +32,7 @@ class ApiController extends Controller
         return \Response::json([
             'messages' => $messages,
             'http_code' => static::$HTTP_UNPROCESSABLE
-        ]);
+        ], static::$HTTP_UNPROCESSABLE);
     }
 
     public function error($message = 'Internal Server Error', $errCode = 0)
@@ -41,6 +41,6 @@ class ApiController extends Controller
             'message' => $message,
             'error_code' => $errCode,
             'http_code' => static::$HTTP_ERROR
-        ]);
+        ], static::$HTTP_ERROR);
     }
 }
