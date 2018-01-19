@@ -1,6 +1,7 @@
 <?php
 namespace Picshare\Application\Transformers;
 
+use Carbon\Carbon;
 use Picshare\Domain\Pictures\Picture;
 
 /**
@@ -27,8 +28,8 @@ class PicturesTransformer extends Transformer
             'title' => $picture['title'],
             'description' => $picture['description'],
             'filename' => $picture['filename'],
-            'created_at' => $picture['created_at'],
-            'updated_at' => $picture['updated_at'],
+            'created_at' => Carbon::parse($picture['created_at'])->diffForHumans(),
+            'updated_at' => Carbon::parse($picture['updated_at'])->diffForHumans(),
         ];
     }
 }

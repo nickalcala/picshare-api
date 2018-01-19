@@ -51,7 +51,7 @@ class PicturesController extends ApiController
         $validator = \Validator::make($request, [
             'title' => 'required',
             'description' => 'required',
-            'picture' => 'required|image'
+            'file' => 'required|image'
         ]);
 
         if ($validator->fails()) {
@@ -66,7 +66,7 @@ class PicturesController extends ApiController
 
         $this->pictureService->upload(
             $picture,
-            \Request::file('picture')
+            \Request::file('file')
         );
 
         return $this->success(true);

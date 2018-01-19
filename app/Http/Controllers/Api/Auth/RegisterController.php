@@ -24,8 +24,8 @@ class RegisterController extends ApiController
         $request = \Request::all();
         $validator = \Validator::make($request, [
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'min:6|confirmed'
+            'email' => 'required|email|unique:users,email',
+            'password' => 'min:6'
         ]);
         if ($validator->fails()) {
             return $this->unprocessable($validator->messages());
